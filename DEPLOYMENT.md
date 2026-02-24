@@ -159,3 +159,43 @@ However, CI/CD is strongly recommended when you want consistency and repeatabili
 - Start with **manual submission** for first release.
 - Add **GitHub Actions** once your release process stabilizes.
 - Keep signing credentials/API keys in GitHub Secrets (never in repo).
+
+
+## 8) GitHub Actions CI/CD steps (ready-to-use)
+
+This repo now includes `.github/workflows/extension-ci-cd.yml`.
+
+### What it does
+
+1. **Validate** on PR/push:
+   - `python -m json.tool manifest.json`
+   - `node --check background.js`
+   - `node --check options.js`
+2. **Package** a distributable ZIP (`gitlab-url-migration-redirector.zip`).
+3. **Upload artifact** to the workflow run.
+4. On tags like `v1.0.0`, **attach ZIP to GitHub Releases**.
+
+### How to run release pipeline
+
+1. Update `manifest.json` version.
+2. Commit and push changes.
+3. Create and push a version tag:
+
+```bash
+git tag v1.0.1
+git push origin v1.0.1
+```
+
+4. Open GitHub Actions run and download artifact or use the generated GitHub Release asset.
+
+### Optional: fully automated store publishing
+
+The workflow contains a placeholder job (`publish-guidance`) where you can add store API upload steps.
+
+Recommended secrets (if automating):
+
+- `CWS_CLIENT_ID`, `CWS_CLIENT_SECRET`, `CWS_REFRESH_TOKEN`, `CWS_EXTENSION_ID`
+- Edge Partner Center/Azure app credentials (`EDGE_TENANT_ID`, `EDGE_CLIENT_ID`, `EDGE_CLIENT_SECRET`)
+- `AMO_JWT_ISSUER`, `AMO_JWT_SECRET`
+
+If you do not add store upload steps, manual dashboard submission remains fully valid.

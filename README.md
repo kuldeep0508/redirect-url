@@ -52,6 +52,8 @@ Use enterprise/private rollout instead of public stores:
 
 Detailed step-by-step guide: **[`DEPLOYMENT.md`](./DEPLOYMENT.md)**
 
+CI/CD workflow included: **[`.github/workflows/extension-ci-cd.yml`](./.github/workflows/extension-ci-cd.yml)** for validation, packaging, and tag-based release artifacts.
+
 ## Browser compatibility notes
 
 - **Chrome / Edge:** Supported via Manifest V3 + declarativeNetRequest.
