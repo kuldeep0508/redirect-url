@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "GitLab URL Migration Redirector",
+  "description": "Redirects legacy GitLab URLs to a new host using regex or wildcard mappings.",
+  "version": "1.0.0",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "GitLab URL Migration Redirector"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "gitlab-url-migration-redirector@example.com",
+      "strict_min_version": "128.0"
+    }
+  }
+}
