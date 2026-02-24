@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitLab URL Migration Redirector</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>GitLab URL Migration Redirector</h1>
+      <p class="subtitle">
+        Add regex or wildcard redirect mappings to smoothly migrate from old GitLab URLs to the new domain.
+      </p>
+
+      <form id="rule-form" class="card">
+        <label>
+          Description
+          <input id="description" required placeholder="Old innersource URL to new GitLab" />
+        </label>
+
+        <label>
+          Example URL
+          <input id="exampleUrl" placeholder="https://old-gitlab.example.com/group/project" />
+        </label>
+
+        <label>
+          Include pattern
+          <input id="includePattern" required placeholder="https://old-gitlab.example.com/(.*)" />
+        </label>
+
+        <label>
+          Redirect to
+          <input id="redirectTo" required placeholder="https://new-gitlab.example.com/$1" />
+        </label>
+
+        <label>
+          Pattern type
+          <select id="patternType">
+            <option value="regex">Regular Expression</option>
+            <option value="wildcard">Wildcard</option>
+          </select>
+        </label>
+
+        <label>
+          Exclude pattern (optional)
+          <input id="excludePattern" placeholder="https://old-gitlab.example.com/help/*" />
+        </label>
+
+        <fieldset>
+          <legend>Apply to resource types</legend>
+          <div id="resource-types" class="resource-grid"></div>
+        </fieldset>
+
+        <label class="inline">
+          <input id="enabled" type="checkbox" checked />
+          Rule enabled
+        </label>
+
+        <div class="actions">
+          <button type="submit">Save rule</button>
+          <button type="button" id="reset-form" class="secondary">Reset</button>
+        </div>
+      </form>
+
+      <section class="card">
+        <h2>Saved rules</h2>
+        <p id="empty-state" class="empty">No rules yet.</p>
+        <ul id="rules-list" class="rules-list"></ul>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>
