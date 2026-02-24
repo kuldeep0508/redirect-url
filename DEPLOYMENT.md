@@ -109,3 +109,53 @@ Tip: Keep a single canonical rule:
 - Redirect to: `https://gitlab.sbs-software.com/$1`
 - Pattern type: `regex`
 - Resource types: `main_frame`, `sub_frame`, `xmlhttprequest`
+
+---
+
+## 6) If you *do* want to publish to browser stores
+
+Yes, you can publish to each browser's store. It is optional for internal rollout, but useful for easier updates on unmanaged devices.
+
+### Chrome Web Store
+
+1. Create a developer account in Chrome Web Store Developer Dashboard.
+2. Zip extension source (same package content as your release zip).
+3. Upload package, complete listing metadata/screenshots, and submit for review.
+4. After approval, users can install directly from the store.
+
+### Microsoft Edge Add-ons
+
+1. Create a partner/developer account in Microsoft Partner Center (Edge Add-ons).
+2. Upload extension package and fill listing data.
+3. Submit for certification.
+4. After publish, users install from Edge Add-ons catalog.
+
+### Firefox Add-ons (AMO)
+
+1. Sign in to AMO developer hub.
+2. Upload `.xpi`.
+3. Choose one:
+   - **Listed** (public store listing), or
+   - **Unlisted** (signed but not publicly listed; can still distribute internally).
+
+---
+
+## 7) Do you need GitHub Actions / CI pipelines?
+
+Short answer: **No, not required**. You can publish manually from each store dashboard.
+
+However, CI/CD is strongly recommended when you want consistency and repeatability.
+
+### Good CI responsibilities
+
+- Validate syntax/tests on every change.
+- Build signed artifacts (`.zip`, `.crx`, `.xpi`).
+- Bump version consistently.
+- Attach artifacts to GitHub Releases.
+- Optionally call store APIs for upload/submit.
+
+### Practical recommendation
+
+- Start with **manual submission** for first release.
+- Add **GitHub Actions** once your release process stabilizes.
+- Keep signing credentials/API keys in GitHub Secrets (never in repo).
