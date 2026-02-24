@@ -43,6 +43,15 @@ The extension stores your rules in `chrome.storage.sync` and converts enabled ru
 4. Load unpacked/temporary add-on from this folder.
 5. Open extension **Options** and add your migration rule(s).
 
+## Share in your org without public store publishing
+
+Use enterprise/private rollout instead of public stores:
+
+- **Chrome / Edge (recommended):** package to `.crx`, host internally, and force-install via `ExtensionInstallForcelist` policy.
+- **Firefox:** package `.xpi`, sign as unlisted/internal add-on, host internally, and install via Firefox enterprise policies.
+
+Detailed step-by-step guide: **[`DEPLOYMENT.md`](./DEPLOYMENT.md)**
+
 ## Browser compatibility notes
 
 - **Chrome / Edge:** Supported via Manifest V3 + declarativeNetRequest.
@@ -53,3 +62,4 @@ The extension stores your rules in `chrome.storage.sync` and converts enabled ru
 - `manifest.json` – extension metadata and permissions.
 - `background.js` – dynamic redirect rule synchronization.
 - `options.html` / `options.js` / `options.css` – rule management UI.
+- `DEPLOYMENT.md` – private/org-wide deployment and update steps.
